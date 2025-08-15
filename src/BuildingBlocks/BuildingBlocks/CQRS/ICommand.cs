@@ -1,17 +1,14 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuildingBlocks.CQRS
 {
+
+    //Command with no return type
     internal interface ICommand : ICommand<Unit>
     {
     }
 
-
+    // With return type
      public interface ICommand<out TResponse> : IRequest<TResponse>
     {
 
