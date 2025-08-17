@@ -1,8 +1,4 @@
 // Encapsulates the business logic
-
-using BuildingBlocks.CQRS;
-using Catalog.API.Models;
-
 namespace Catalog.API.Products.CreateProduct;
 
 // Data that needed to create a new product
@@ -19,7 +15,7 @@ public record CreateProductCommand(
 // Once successfully create product, then return that product ID
 public record CreateProductResult(Guid Id);
 
-internal class CreateProductCommandHandler
+internal class CreateProductCommandHandler(IDocumentSession session)
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(
@@ -42,11 +38,12 @@ internal class CreateProductCommandHandler
         };
 
         //save to db
-
+        session.Store(product);
+        await session.SaveChangesAsync(cancellationToken);
 
         //return result
 
-        return new CreateProductResult(Guid.NewGuid());
+        return new CreateProductResult(product.Id);
         
     }
 } 
