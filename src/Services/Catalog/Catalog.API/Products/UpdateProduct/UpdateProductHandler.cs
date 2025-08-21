@@ -12,10 +12,10 @@ namespace Catalog.API.Products.UpdateProduct
 
     public record UpdateProductResult(bool IsSuccess);
     internal class UpdateProductCommandHandler
-        (IDocumentSession session, ILogger<UpdateProductCommandHandler> logger)
-        : ICommandHandler<UpdateProductCommand, UpdateProductResult>
+    (IDocumentSession session, ILogger<UpdateProductCommandHandler> logger)
+    : ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
-        async Task<UpdateProductResult> IRequestHandler<UpdateProductCommand, UpdateProductResult>.Handle(UpdateProductCommand command, CancellationToken cancellationToken)
+        public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
             logger.LogInformation("UpdateProductCommandHandler.Handle called with {@Command}", command);
 
@@ -35,7 +35,8 @@ namespace Catalog.API.Products.UpdateProduct
             session.Update(product);
             await session.SaveChangesAsync(cancellationToken);
 
-            return new UpdateProductResult(true);  
+            return new UpdateProductResult(true);
         }
     }
+
 }
