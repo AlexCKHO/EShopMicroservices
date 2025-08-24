@@ -7,7 +7,7 @@ namespace BuildingBlocks.Behaviors
     public class ValidationBehavior<TRequest, TResponse>
         (IEnumerable<IValidator<TRequest>> validators)
         : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : ICommand<TRequest> // this where clause art like a filter. Only ICommand request will be handled
+        where TRequest : ICommand<TResponse> // this where clause art like a filter. Only ICommand request will be handled
     {
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
