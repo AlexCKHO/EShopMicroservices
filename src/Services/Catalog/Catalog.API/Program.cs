@@ -1,6 +1,4 @@
-using BuildingBlocks.Behaviors;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,41 +25,17 @@ builder.Services.AddMarten(opts =>
 }
 ).UseLightweightSessions();
 
+// Add the CustomExceptionHandler into Dependance injection toolbox
+builder.Services.AddExceptionHandler<CustomExcetionHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.MapCarter();
 
-app.UseExceptionHandler(exceptionHandlerApp =>
-{
-    exceptionHandlerApp.Run(async context =>
-    {
-        var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
-        if (exception == null)
-        {
-            return;
-        }
 
-        //Format the error response
-
-        var problemDetails = new ProblemDetails
-        {
-            Title = exception.Message,
-            Status = StatusCodes.Status500InternalServerError,
-            Detail = exception.StackTrace
-        };
-
-        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
-        logger.LogError(exception, exception.Message);
-
-        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-        context.Response.ContentType = "application/problem+json";
-
-        //Write the exception in Json format
-
-        await context.Response.WriteAsJsonAsync(problemDetails);
-    });
-});
+// Use the CustomExceptionHandler to handle all incoming Exception
+app.UseExceptionHandler(options => { });
 
 
 app.Run();
