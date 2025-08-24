@@ -1,5 +1,7 @@
 
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -25,6 +27,13 @@ builder.Services.AddMarten(opts =>
     
 }
 ).UseLightweightSessions();
+
+
+if (builder.Environment.IsDevelopment())
+{
+
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
 
 // Add the CustomExceptionHandler into Dependance injection toolbox
 builder.Services.AddExceptionHandler<CustomExcetionHandler>();

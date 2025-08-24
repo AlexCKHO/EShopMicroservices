@@ -18,7 +18,7 @@ namespace BuildingBlocks.Behaviors
             var timer = new Stopwatch();
             timer.Start();
 
-            //Next element on the pipeline
+            //Next element on the pipeline which is the actually handler method
             var response = await next();
 
             timer.Stop();
