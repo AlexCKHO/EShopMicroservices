@@ -8,7 +8,6 @@ public class CatalogInitialData : IInitialData
     {
         using var session = store.LightweightSession();
 
-
         // If there is any data in the database, then return
         if (await session.Query<Product>().AnyAsync())
             return;
