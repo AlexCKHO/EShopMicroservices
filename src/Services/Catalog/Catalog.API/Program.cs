@@ -20,7 +20,7 @@ builder.Services.AddCarter();
 builder.Services.AddMarten(opts =>
 {
     opts.Connection(builder.Configuration.GetConnectionString("Database"));
-    
+
 }
 ).UseLightweightSessions();
 
@@ -33,6 +33,9 @@ if (builder.Environment.IsDevelopment())
 // Add the CustomExceptionHandler into Dependance injection toolbox
 builder.Services.AddExceptionHandler<CustomExcetionHandler>();
 
+builder.Services.AddHealthChecks()
+    .AddNpgSql((builder.Configuration.GetConnectionString("Database"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,6 +45,7 @@ app.MapCarter();
 // Use the CustomExceptionHandler to handle all incoming Exception
 app.UseExceptionHandler(options => { });
 
+app.UseHealthChecks("/health");
 
 app.Run();
 
