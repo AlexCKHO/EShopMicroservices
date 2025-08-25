@@ -1,7 +1,3 @@
-
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -31,7 +27,6 @@ builder.Services.AddMarten(opts =>
 
 if (builder.Environment.IsDevelopment())
 {
-
     builder.Services.InitializeMartenWith<CatalogInitialData>();
 }
 
