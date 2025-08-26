@@ -1,6 +1,11 @@
-﻿namespace Basket.API.Basket.GetBasket
+﻿
+namespace Basket.API.Basket.GetBasket
 {
-    public class DeleteBasketEnpoints
+
+    // public record GetBasketRequest(string UserName);
+
+    public record GetBasketResponse(ShoppingCart Cart);
+    public class DeleteBasketEnpoints : ICarterModule
     {
     }
 }
