@@ -1,3 +1,5 @@
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 var assembly = typeof(Program).Assembly;
@@ -19,9 +21,12 @@ builder.Services.AddMarten(opts =>
 ).UseLightweightSessions();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddExceptionHandler<CustomExcetionHandler>();
 
 var app = builder.Build();
 
 app.MapCarter();
+
+app.UseExceptionHandler(options => { });
 
 app.Run();
