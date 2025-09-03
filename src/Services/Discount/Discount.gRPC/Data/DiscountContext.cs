@@ -7,7 +7,7 @@ namespace Discount.gRPC.Data
 {
     public class DiscountContext : DbContext
     {
-        public DbSet<Coupon> Coupones { get; set; } = default!;
+        public DbSet<Coupon> Coupons { get; set; } = default!;
 
         //What this line does in Entity Framework Core
 
