@@ -27,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{A8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.API", "Services\Ordering\Ordering.API\Ordering.API.csproj", "{587BF8FB-E150-49D2-BC67-FE2BD91AD891}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Domain", "Services\Ordering\Ordering.Domain\Ordering.Domain.csproj", "{2925E1F7-4391-4473-AE5F-704555838CDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Application", "Services\Ordering\Ordering.Application\Ordering.Application.csproj", "{3945664F-FE3B-4336-9317-DCE21129B1B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{587BF8FB-E150-49D2-BC67-FE2BD91AD891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{587BF8FB-E150-49D2-BC67-FE2BD91AD891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{587BF8FB-E150-49D2-BC67-FE2BD91AD891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2925E1F7-4391-4473-AE5F-704555838CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2925E1F7-4391-4473-AE5F-704555838CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2925E1F7-4391-4473-AE5F-704555838CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2925E1F7-4391-4473-AE5F-704555838CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3945664F-FE3B-4336-9317-DCE21129B1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3945664F-FE3B-4336-9317-DCE21129B1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3945664F-FE3B-4336-9317-DCE21129B1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3945664F-FE3B-4336-9317-DCE21129B1B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +83,8 @@ Global
 		{8FEF1B52-1EB0-40EC-9923-DC16758EC89C} = {4B300DCB-7732-44F5-9BF4-1F9CFCBF2DA9}
 		{A83ADEEC-BE75-4415-82A3-852661E45C19} = {38C241CE-998F-44E0-8E59-60E942F61C99}
 		{587BF8FB-E150-49D2-BC67-FE2BD91AD891} = {A83ADEEC-BE75-4415-82A3-852661E45C19}
+		{2925E1F7-4391-4473-AE5F-704555838CDD} = {A83ADEEC-BE75-4415-82A3-852661E45C19}
+		{3945664F-FE3B-4336-9317-DCE21129B1B5} = {A83ADEEC-BE75-4415-82A3-852661E45C19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88E3A823-471E-406B-BCEC-CBC39A0C1142}
