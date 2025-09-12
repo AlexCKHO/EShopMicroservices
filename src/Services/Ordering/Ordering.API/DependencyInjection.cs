@@ -11,7 +11,9 @@
 
         }
 
-        public static WebApplication UseApiServices(this WebApplication app) { 
+        public static WebApplication UseApiServices(this WebApplication app) {
+
+            Console.WriteLine("app");
         
             return app;
         
