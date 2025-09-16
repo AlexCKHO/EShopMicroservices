@@ -1,6 +1,11 @@
-﻿namespace Ordering.API.Abstractions
+﻿using MediatR;
+
+namespace Ordering.API.Abstractions
 {
     public interface IDomainEvent : INotification
     {
+        Guid EventId => Guid.NewGuid();
+        public DateTime OccurredOn => DateTime.Now;
+        public string EventType => GetType().AssemblyQualifiedName;
     }
 }
