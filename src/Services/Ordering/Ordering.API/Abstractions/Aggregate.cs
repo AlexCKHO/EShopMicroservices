@@ -11,14 +11,16 @@ namespace Ordering.API.Abstractions
 
             _domainEvents.Add(domainEvent);
         }
-
+        //What is this part
         public IDomainEvent[] ClearDomainEvents()
         {
             IDomainEvent[] dequeueEvents = _domainEvents.ToArray();
-
+            Console.WriteLine("Testing");
             _domainEvents.Clear();
 
             return dequeueEvents;
         }
+
+       
     }
 }
