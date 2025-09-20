@@ -12,6 +12,7 @@ namespace Ordering.API.Abstractions
             _domainEvents.Add(domainEvent);
         }
         //What is this part
+        //What is this part
         public IDomainEvent[] ClearDomainEvents()
         {
             IDomainEvent[] dequeueEvents = _domainEvents.ToArray();
