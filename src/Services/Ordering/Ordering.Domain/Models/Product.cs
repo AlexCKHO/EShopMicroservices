@@ -1,6 +1,6 @@
-﻿using Ordering.API.Abstractions;
+﻿using Ordering.Domain.Abstractions;
 
-namespace Ordering.API.Models
+namespace Ordering.Domain.Models
 {
     public class Product : Entity<Guid>
     {

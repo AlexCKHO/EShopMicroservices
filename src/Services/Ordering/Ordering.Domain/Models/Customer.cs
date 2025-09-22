@@ -1,4 +1,4 @@
-﻿using Ordering.API.Abstractions;
+﻿using Ordering.Domain.Abstractions;
 
 namespace Ordering.API.Models
 {

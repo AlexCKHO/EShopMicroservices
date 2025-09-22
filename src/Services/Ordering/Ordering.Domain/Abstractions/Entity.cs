@@ -1,4 +1,4 @@
-﻿namespace Ordering.API.Abstractions
+﻿namespace Ordering.Domain.Abstractions
 {
     public class Entity<T> : IEntity<T>
     {

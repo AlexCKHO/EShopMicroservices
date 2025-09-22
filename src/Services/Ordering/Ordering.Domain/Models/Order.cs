@@ -1,7 +1,9 @@
-﻿using Ordering.API.Abstractions;
-using System.Net;
+﻿
 
-namespace Ordering.API.Models
+
+using Ordering.API.Models;
+
+namespace Ordering.Domain.Models
 {
     public class Order : Aggregate<Guid>
     {
