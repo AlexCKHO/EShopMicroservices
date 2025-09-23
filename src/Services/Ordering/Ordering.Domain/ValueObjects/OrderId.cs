@@ -4,13 +4,13 @@
     {
         public Guid Value { get; }
 
-        private OrderId (Guid value) => Value = value;
+        private OrderId(Guid value) => Value = value;
 
         public static OrderId Of(Guid value)
         {
 
             ArgumentNullException.ThrowIfNull(value);
-            if(value == Guid.Empty)
+            if (value == Guid.Empty)
             {
 
 
@@ -18,7 +18,7 @@
 
 
             }
-            return new OrderId (value);
+            return new OrderId(value);
         }
     }
 }
