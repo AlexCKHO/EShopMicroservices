@@ -1,4 +1,4 @@
-﻿namespace Ordering.API.Models
+﻿namespace Ordering.Domain.Models
 {
     public class Customer : Entity<CustomerId>
     {

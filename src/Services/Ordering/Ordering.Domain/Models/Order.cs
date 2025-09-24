@@ -1,5 +1,4 @@
-﻿using Ordering.API.Models;
-using Ordering.Domain.Events;
+﻿using Ordering.Domain.Events;
 
 namespace Ordering.Domain.Models
 {
