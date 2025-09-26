@@ -1,8 +1,4 @@
 ﻿
-
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Ordering.Infrastructure
 {
     public static class DependencyInjection
@@ -11,6 +7,8 @@ namespace Ordering.Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("Datatbase");
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             return services;
 
