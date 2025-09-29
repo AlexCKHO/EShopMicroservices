@@ -28,7 +28,8 @@ namespace Ordering.Infrastructure.Data.Extenstions
         {
 
             await SeedCustomerAsync(context);
-
+            await SeedProductAsync(context);
+            await SeedOrdersWithItemsAsync(context);
 
         }
 
@@ -44,6 +45,32 @@ namespace Ordering.Infrastructure.Data.Extenstions
 
             }
         }
+
+        private static async Task SeedProductAsync(ApplicationDbContext context)
+        {
+
+            if (!await context.Products.AnyAsync())
+            {
+
+
+                await context.Products.AddRangeAsync(InitialData.Products);
+                await context.SaveChangesAsync();
+
+            }
+        }
+
+        private static async Task SeedOrdersWithItemsAsync(ApplicationDbContext context)
+        {
+
+            if (!await context.Orders.AnyAsync())
+            {
+
+
+                await context.Orders.AddRangeAsync(InitialData.OrdersWithItems);
+                await context.SaveChangesAsync();
+
+            }
+        } 
     }
 
 }
