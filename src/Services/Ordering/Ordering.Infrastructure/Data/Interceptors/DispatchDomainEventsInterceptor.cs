@@ -47,6 +47,10 @@ namespace Ordering.Infrastructure.Data.Interceptors
                 await mediator.Publish(domainEvent);
 
 
+
+            foreach (var domainEvent in domainEvents)
+                await mediator.Publish(domainEvent);
+
             //Step 1: take a snapshot of all domain events before touching the aggregates.
 
             //Step 2: clear all the aggregates’ event queues.
