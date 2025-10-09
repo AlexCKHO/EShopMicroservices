@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Dtos
 {
-    internal class AddressDto
-    {
-    }
+    public record AddressDto(string FirstName, string LastName, string EmailAddress, 
+        string Country, string State, string ZipCode);
+
 }

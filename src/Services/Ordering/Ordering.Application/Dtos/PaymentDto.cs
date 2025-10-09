@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Dtos
 {
-    internal class PaymentDto
-    {
-    }
+    public record PaymentDto
+    (string CardName, string CardNumber, string Expiration, string Cvv, int PaymentMethod);
 }
