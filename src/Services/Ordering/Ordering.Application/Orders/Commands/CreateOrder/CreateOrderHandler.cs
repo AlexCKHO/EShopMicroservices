@@ -11,6 +11,9 @@ namespace Ordering.Application.Orders.Commands.CreateOrder
     {
         public Task<CreateOrderResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
+
+
+
             throw new NotImplementedException();
 
         }
