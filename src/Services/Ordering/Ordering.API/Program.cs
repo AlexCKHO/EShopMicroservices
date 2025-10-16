@@ -1,7 +1,3 @@
-using Ordering.API;
-using Ordering.Application;
-using Ordering.Infrastructure;
-using Ordering.Infrastructure.Data.Extenstions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +18,6 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
-// Configure the HTTP request pipeline
-// Configure the HTTP request pipeline
-// Configure the HTTP request pipeline
 // Configure the HTTP request pipeline
 
 app.UseApiServices();
