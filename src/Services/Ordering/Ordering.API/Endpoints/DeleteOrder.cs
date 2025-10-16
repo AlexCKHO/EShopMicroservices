@@ -1,4 +1,6 @@
-﻿namespace Ordering.API.Endpoints
+﻿using Ordering.Application.Orders.Commands.DeleteOrder;
+
+namespace Ordering.API.Endpoints
 {
     //- Accepts the order ID as a parameter.
     //- Constructs a DeleteOrderCommand.
