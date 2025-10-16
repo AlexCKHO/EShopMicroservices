@@ -22,12 +22,16 @@ namespace Ordering.API.Endpoints
 
             app.MapPost("/orders", async (CreateOrderRequest request, ISender sender) =>
             {
+
+                // Mapster map CreateOrderRequest to CreateOrderCommand
                 var command = request.Adapt<CreateOrderCommand>();
 
+                // Uses MediatR to send the command to the corresponding handler.
                 var result = await sender.Send(command);
 
                 var response = result.Adapt<CreateOrderResponse>();
 
+                //- Returns a response with the created order's ID
                 return Results.Created($"/orders/{response.Id}", response);
             })
                       .WithName("CreateOrder")
