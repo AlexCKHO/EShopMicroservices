@@ -1,5 +1,7 @@
 ﻿using BuildingBlocks.Pagination;
+using Microsoft.AspNetCore.Routing;
 using Ordering.Application.Orders.Queries.GetOrders;
+using System.Text.RegularExpressions;
 
 namespace Ordering.API.Endpoints;
 
@@ -14,7 +16,11 @@ public class GetOrders : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        // What is this
+        //   What is this
+        //   [AsParameters] is basically saying to ASP.NET:
+        //   “Take all the individual query(or route / body) parameters that match the properties 
+        //   inside PaginationRequest, and automatically populate that object for me.”
+
         app.MapGet("/orders", async ([AsParameters] PaginationRequest request, ISender sender) =>
         {
             var result = await sender.Send(new GetOrdersQuery(request));
