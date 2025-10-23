@@ -32,11 +32,12 @@ namespace Ordering.API.Endpoints
                 var response = result.Adapt<CreateOrderResponse>();
 
                 //- Returns a response with the created order's ID
+
                 return Results.Created($"/orders/{response.Id}", response);
             })
                       .WithName("CreateOrder")
         .Produces<CreateOrderResponse>(StatusCodes.Status201Created)
-        .ProducesProblem(StatusCodes.Status400BadRequest)
+        .ProducesProblem(StatusCodes.Status400BadRequest)  
         .WithSummary("Create Order")
         .WithDescription("Create Order");
         }
