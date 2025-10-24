@@ -19,7 +19,7 @@ namespace Ordering.Application.Orders.Commands.DeleteOrder
 
             dbContext.Orders.Remove(order);
 
-            await dbContext.SaveChangeAsync(cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return new DeleteOrderResult(true);
 

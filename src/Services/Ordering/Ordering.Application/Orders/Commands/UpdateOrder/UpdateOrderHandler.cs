@@ -18,7 +18,7 @@
             UpdateOrderWithNewValues(order, command.Order);
 
             dbContext.Orders.Update(order);
-            await dbContext.SaveChangeAsync(cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return new UpdateOrderResult(true);
 

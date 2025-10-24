@@ -12,7 +12,7 @@ namespace Ordering.Application.Orders.Commands.CreateOrder
 
             //save to database
             dbContext.Orders.Add(order);
-            await dbContext.SaveChangeAsync(cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return new CreateOrderResult(order.Id.Value);
 
