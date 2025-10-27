@@ -12,13 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddApplicationServices(builder.Configuration)
     .AddInfrastructureServices(builder.Configuration)
-    .AddApiServices(); // From DependencyInjection.cs
+    .AddApiServices(builder.Configuration); // From DependencyInjection.cs
 
 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Configure the HTTP request pipeline, Configuring the middleware pipeline (Runtime phase)
 
 app.UseApiServices();
 
