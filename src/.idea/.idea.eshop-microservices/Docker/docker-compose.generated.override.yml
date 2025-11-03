@@ -1,0 +1,74 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  basket.api:
+    build:
+      context: "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src"
+      dockerfile: "Services/Basket/Basket.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Basket.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "basketapi:dev"
+    ports: []
+    volumes:
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src/Services/Basket/Basket.API:/app:rw"
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src:/src:rw"
+    - "/Users/alex/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  catalog.api:
+    build:
+      context: "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src"
+      dockerfile: "Services/Catalog/Catalog.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Catalog.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "catalogapi:dev"
+    ports: []
+    volumes:
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src/Services/Catalog/Catalog.API:/app:rw"
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src:/src:rw"
+    - "/Users/alex/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  discount.grpc:
+    build:
+      context: "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src"
+      dockerfile: "Services/Discount/Discount.gRPC/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Discount.gRPC.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "discountgrpc:dev"
+    ports: []
+    volumes:
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src/Services/Discount/Discount.gRPC:/app:rw"
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src:/src:rw"
+    - "/Users/alex/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  ordering.api:
+    build:
+      context: "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src"
+      dockerfile: "Services/Ordering/Ordering.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Ordering.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "orderingapi:dev"
+    ports: []
+    volumes:
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src/Services/Ordering/Ordering.API:/app:rw"
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src:/src:rw"
+    - "/Users/alex/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
