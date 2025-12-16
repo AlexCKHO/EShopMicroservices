@@ -1,9 +1,9 @@
 namespace Shopping.Web.Pages;
-
-public class IndexModel(ICatalogService catalogService, IBasketService basketService, ILogger<IndexModel> logger)
+public class IndexModel
+    (ICatalogService catalogService, IBasketService basketService, ILogger<IndexModel> logger)
     : PageModel
-{
-    public IEnumerable<ProductModel> ProductList { get; set; } = new List<ProductModel>();
+{    
+    public IEnumerable<ProductModel> ProductList { get; set; } = new List<ProductModel>();    
 
     public async Task<IActionResult> OnGetAsync()
     {
@@ -32,11 +32,7 @@ public class IndexModel(ICatalogService catalogService, IBasketService basketSer
         });
 
         await basketService.StoreBasket(new StoreBasketRequest(basket));
-
+        
         return RedirectToPage("Cart");
-    }
-
-    
-// Note: You would need to define the ShoppingCartModel, the GetBasket method,
-// and the structure of getBasketResponse (including the 'Cart' property) for this to compile.
+    }    
 }
