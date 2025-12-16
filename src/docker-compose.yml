@@ -1,15 +1,15 @@
 services:
   catalogdb:
-   image: postgres
+    image: postgres
 
   basketdb:
-   image: postgres
+    image: postgres
 
   distributedcache:
-   image: redis
+    image: redis
 
   orderdb:
-   image: mcr.microsoft.com/mssql/server
+    image: mcr.microsoft.com/mssql/server
 
   messagebroker:
     image: rabbitmq:management
@@ -44,10 +44,15 @@ services:
       context: .
       dockerfile: ApiGateways/YarpApiGateway/Dockerfile
 
+  shopping.web:
+    image: shopping.web
+    build:
+      context: .
+      dockerfile: WebApps/Shopping.Web/Dockerfile
+
 volumes:
   postgres_catalog:
   postgres_basket:
-
 
 
 

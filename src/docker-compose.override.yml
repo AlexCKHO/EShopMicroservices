@@ -149,6 +149,8 @@
 #      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 #  
 # 👇 docker setting for MacOS
+version: '3.4'
+
 services:
   catalogdb:
     container_name: catalogdb
@@ -161,7 +163,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data/
-
+  
   basketdb:
     container_name: basketdb
     environment:
@@ -173,7 +175,7 @@ services:
       - "5433:5432"
     volumes:
       - postgres_basket:/var/lib/postgresql/data/
-
+  
   distributedcache:
     container_name: distributedcache
     restart: always
@@ -193,6 +195,10 @@ services:
     container_name: messagebroker
     hostname: ecommerce-mq
     environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
     restart: always
@@ -202,12 +208,12 @@ services:
 
   catalog.api:
     environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       - ConnectionStrings__Database=Server=catalogdb;Port=5432;Database=CatalogDb;User Id=postgres;Password=postgres;Include Error Detail=true
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
       - catalogdb
     ports:
@@ -219,6 +225,8 @@ services:
 
   basket.api:
     environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
@@ -228,8 +236,6 @@ services:
       - MessageBroker__Host=amqp://ecommerce-mq:5672
       - MessageBroker__UserName=guest
       - MessageBroker__Password=guest
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
       - basketdb
       - distributedcache
@@ -244,12 +250,12 @@ services:
 
   discount.grpc:
     environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       - ConnectionStrings__Database=Data Source=discountdb
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     ports:
       - "6002:8080"
       - "6062:8081"
@@ -259,6 +265,8 @@ services:
 
   ordering.api:
     environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
@@ -267,8 +275,6 @@ services:
       - MessageBroker__UserName=guest
       - MessageBroker__Password=guest
       - FeatureManagement__OrderFullfilment=false
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
       - orderdb
       - messagebroker
@@ -281,11 +287,11 @@ services:
 
   yarpapigateway:
     environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
       - catalog.api
       - basket.api
@@ -297,8 +303,19 @@ services:
       - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
       - ~/.aspnet/https:/https:ro
 
-volumes:
-  postgres_catalog:
-  postgres_basket:
-
-
+  shopping.web:
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pass
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ApiSettings__GatewayAddress=http://yarpapigateway:8080
+    depends_on:
+      - yarpapigateway
+    ports:
+      - "6005:8080"
+      - "6065:8081"
+    volumes:
+      - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/https:ro

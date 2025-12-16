@@ -72,6 +72,25 @@ services:
     - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src:/src:rw"
     - "/Users/alex/.nuget/packages:/home/app/.nuget/packages"
     working_dir: "/app"
+  shopping.web:
+    build:
+      context: "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src"
+      dockerfile: "WebApps/Shopping.Web/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Shopping.Web.dll"
+    environment:
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net8.0/Shopping.Web.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "shopping.web:dev"
+    ports: []
+    volumes:
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src/WebApps/Shopping.Web:/app:rw"
+    - "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src:/src:rw"
+    - "/Users/alex/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
   yarpapigateway:
     build:
       context: "/Users/alex/Projects/Udemy/Dot NET 8 Microservices/EShopMicroservices/src"
